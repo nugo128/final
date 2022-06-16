@@ -276,8 +276,46 @@ let booked = [];
 selectedDate.addEventListener("change", () => {
   displayItems(selectedDate.value);
 });
+const tim = document.getElementById("selecttime1");
+const tim2 = document.getElementById("selecttime2");
+const tim3 = document.getElementById("selecttime3");
+
+console.log(time1[0]);
 let timesArray1 = [time1[0], time2[0], time3[0], time4[0], time5[0]];
+const checkItems = () => {
+  console.log(booked);
+  booked.map((a) => {
+    if (
+      a.weekDay === selectedDate.value &&
+      a.time === tim.value &&
+      a.title === title1.textContent &&
+      a.cover === img1.src
+    ) {
+      booked.pop();
+      alert("არჩეული სპეკტაკლი უკვე დაჯავშნილია");
+    } else if (
+      a.weekDay === selectedDate.value &&
+      a.time === tim2.value &&
+      a.title === title2.textContent &&
+      a.cover === img2.src
+    ) {
+      booked.pop();
+      alert("არჩეული სპეკტაკლი უკვე დაჯავშნილია");
+    } else if (
+      a.weekDay === selectedDate.value &&
+      a.time === tim3.value &&
+      a.title === title3.textContent &&
+      a.cover === img3.src
+    ) {
+      booked.pop();
+      alert("არჩეული სპეკტაკლი უკვე დაჯავშნილია");
+    }
+  });
+  console.log(tim.value);
+};
+
 btn1.addEventListener("click", () => {
+  checkItems();
   console.log(timeSelector1.value, img1.src, title1.textContent);
   for (let i = 0; i < timesArray1.length; i++) {
     if (timeSelector1.value === timesArray1[i].value) {
@@ -294,6 +332,7 @@ btn1.addEventListener("click", () => {
 });
 let timesArray2 = [time1[1], time2[1], time3[1], time4[1], time5[1]];
 btn2.addEventListener("click", () => {
+  checkItems();
   console.log(timeSelector2.value, img2.src, title2.textContent);
   for (let i = 0; i < timesArray2.length; i++) {
     if (timeSelector2.value === timesArray2[i].value) {
@@ -311,6 +350,7 @@ btn2.addEventListener("click", () => {
 let timesArray3 = [time1[2], time2[2], time3[2], time4[2], time5[2]];
 
 btn3.addEventListener("click", () => {
+  checkItems();
   console.log(timeSelector3.value, img3.src, title3.textContent);
   for (let i = 0; i < timesArray3.length; i++) {
     if (timeSelector3.value === timesArray3[i].value) {
@@ -324,12 +364,4 @@ btn3.addEventListener("click", () => {
       console.log(booked);
     }
   }
-});
-
-const checkTimes = function () {
-  console.log("a");
-};
-
-selectedDate.addEventListener("change", () => {
-  displayItems(selectedDate.value);
 });
