@@ -184,15 +184,6 @@ const data = [
     ],
   },
 ];
-
-const op1 = document.querySelector(".op1");
-const op2 = document.querySelector(".op2");
-const op3 = document.querySelector(".op3");
-const op4 = document.querySelector(".op4");
-const op5 = document.querySelector(".op5");
-const op6 = document.querySelector(".op6");
-const op7 = document.querySelector(".op7");
-const ops = [op1, op2, op3, op4, op5, op6, op7];
 const selectedDate = document.getElementById("selectdate");
 const itemsCont = document.getElementById("allitems");
 const maindiv1 = document.createElement("div");
@@ -303,7 +294,6 @@ function allStorage() {
   }
 
   let unique = values.filter(onlyUnique);
-  console.log(unique);
   //გამომაქვს ეკრანზე
   unique.map((data, index) => {
     const splitted = data.split(" ");
@@ -489,11 +479,6 @@ selectedDate.addEventListener("change", () => {
       console.log(`.timeselect${i}`);
     }
   }
-  ops.map((a) => {
-    if (a.value === selectedDate.value) {
-      a.selected = "selected";
-    }
-  });
 
   const bkeddiv = document.querySelectorAll(".bookeddiv");
   for (let i = 0; i < bkeddiv.length; i++) {

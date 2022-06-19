@@ -5,7 +5,7 @@
   font-family: sans-serif;
 }
 body {
-  background-color: #030e4f;
+  background-color: #0c1767;
 }
 
 header {
@@ -106,7 +106,7 @@ main {
   justify-items: stretch;
   gap: 10px;
   width: 100%;
-  background-color: #030e4f;
+  background-color: #0c1767;
   height: 100%;
 }
 .bookeddiv {
@@ -310,7 +310,7 @@ main {
 #selectdate:hover {
   cursor: pointer;
 }
-@media (max-width: 1288px) {
+@media (max-width: 1279px) {
   .booked-playes {
     grid-template-columns: repeat(1, 1fr);
   }
