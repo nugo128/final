@@ -303,7 +303,13 @@ main {
     margin: 0 auto;
   }
 }
-
+#selectdate {
+  border-radius: 10px;
+  width: 20%;
+}
+#selectdate:hover {
+  cursor: pointer;
+}
 @media (max-width: 1288px) {
   .booked-playes {
     grid-template-columns: repeat(1, 1fr);
@@ -323,19 +329,17 @@ main {
     margin: 0 auto;
   }
 }
-#selectdate {
-  border-radius: 10px;
-  width: 20%;
-}
-#selectdate:hover {
-  cursor: pointer;
-}
+
 @media (max-width: 950px) {
   .selection {
     justify-content: center;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+  }
+  #selectdate {
+    border-radius: 10px;
+    width: 100%;
   }
   .divselect {
     flex-direction: column;
