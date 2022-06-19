@@ -228,6 +228,7 @@ const weekDays = [
   data[0].sunday,
 ];
 
+//გამომაქვს ყველა სპეკტაკლის მომაცემები
 for (let i = 0; i < weekDays.length; i++) {
   weekDays[i].map((info, index) => {
     const div = document.createElement("div");
@@ -264,9 +265,10 @@ const btnn = document.querySelectorAll(".btn");
 const img1 = document.querySelectorAll(".img1");
 const titlee = document.querySelectorAll(".title");
 const timeselect = document.querySelectorAll(".timeselect");
+
+//დაჯავშნის ღილაკის დაჭერაზე localstorage-ში მიმაქვს ყველა საჭირო ინფო.
 for (let i = 0; i < btnn.length; i++) {
   btnn[i].addEventListener("click", () => {
-    console.log(timee[i].value, img1[i].src, titlee[i].textContent);
     localStorage.setItem(
       `booking${i}-${timee[i].value}`,
       [
@@ -278,13 +280,18 @@ for (let i = 0; i < btnn.length; i++) {
     );
   });
 }
+
+//თავიდან, ვაფერადებ ყველა დროის ასარჩევს მწვანედ
 const allOptions = document.querySelectorAll("option");
 for (let i = 7; i < allOptions.length; i++) {
   allOptions[i].style.color = "green";
 }
 const booked = document.querySelector(".booked-playes");
 let values = [];
+
+// allStorage ფუნქციით localstorage-დან მომაქვს ინფო, შემდეგ დაჯავშნილი სპეკტაკლები გამომაქვს ეკრანზე და ასევე დაჯავშნილ დროებს ვუცვლი ფერს
 function allStorage() {
+  //მომაქვს ლოკალიდან
   let keys = Object.keys(localStorage),
     i = keys.length;
 
@@ -297,7 +304,7 @@ function allStorage() {
 
   let unique = values.filter(onlyUnique);
   console.log(unique);
-  //ffgd
+  //გამომაქვს ეკრანზე
   unique.map((data, index) => {
     const splitted = data.split(" ");
     const div = document.createElement("div");
@@ -322,7 +329,7 @@ function allStorage() {
     div.appendChild(weekDay);
     div.appendChild(time);
     booked.appendChild(div);
-    //vawitleb
+    //ფერს ვუცვლი
     for (let j = 0; j < btnn.length; j++) {
       if (
         " " + titlee[j].textContent === title.textContent &&
@@ -494,6 +501,8 @@ selectedDate.addEventListener("change", () => {
   }
   allStorage();
 });
+
+//გასუფთავების ღილაკი
 const deleteBooks = document.querySelector(".deletebooks");
 deleteBooks.addEventListener("click", function () {
   localStorage.clear();
