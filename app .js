@@ -184,184 +184,318 @@ const data = [
     ],
   },
 ];
-const img1 = document.querySelector(".img1");
-const img2 = document.querySelector(".img2");
-const img3 = document.querySelector(".img3");
-const title1 = document.querySelector(".title1");
-const title2 = document.querySelector(".title2");
-const title3 = document.querySelector(".title3");
-const time1 = document.querySelectorAll(".time1");
-const time2 = document.querySelectorAll(".time2");
-const time3 = document.querySelectorAll(".time3");
-const time4 = document.querySelectorAll(".time4");
-const time5 = document.querySelectorAll(".time5");
-const allItems = document.getElementById("allitems");
-const timeSelector1 = document.getElementById("selecttime1");
-const timeSelector2 = document.getElementById("selecttime2");
-const timeSelector3 = document.getElementById("selecttime3");
-const btn1 = document.querySelector(".btn-buy1");
-const btn2 = document.querySelector(".btn-buy2");
-const btn3 = document.querySelector(".btn-buy3");
+
+const op1 = document.querySelector(".op1");
+const op2 = document.querySelector(".op2");
+const op3 = document.querySelector(".op3");
+const op4 = document.querySelector(".op4");
+const op5 = document.querySelector(".op5");
+const op6 = document.querySelector(".op6");
+const op7 = document.querySelector(".op7");
+const ops = [op1, op2, op3, op4, op5, op6, op7];
 const selectedDate = document.getElementById("selectdate");
+const itemsCont = document.getElementById("allitems");
+const maindiv1 = document.createElement("div");
+const maindiv2 = document.createElement("div");
+const maindiv3 = document.createElement("div");
+const maindiv4 = document.createElement("div");
+const maindiv5 = document.createElement("div");
+const maindiv6 = document.createElement("div");
+const maindiv7 = document.createElement("div");
+maindiv1.className = "main1 monday";
+maindiv2.className = "main2 tuesday";
+maindiv3.className = "main3 wednesday";
+maindiv4.className = "main4 thursday";
+maindiv5.className = "main5 friday";
+maindiv6.className = "main6 saturday";
+maindiv7.className = "main7 sunday";
+const maindivs = [
+  maindiv1,
+  maindiv2,
+  maindiv3,
+  maindiv4,
+  maindiv5,
+  maindiv6,
+  maindiv7,
+];
+const weekDays = [
+  data[0].monday,
+  data[0].tuesday,
+  data[0].wednesday,
+  data[0].thursday,
+  data[0].friday,
+  data[0].saturday,
+  data[0].sunday,
+];
 
-const displayItems = function (day) {
-  img1.src = data[0][day][0].cover;
-  img2.src = data[0][day][1].cover;
-  img3.src = data[0][day][2].cover;
-  title1.textContent = data[0][day][0].title;
-  title2.textContent = data[0][day][1].title;
-  title3.textContent = data[0][day][2].title;
+for (let i = 0; i < weekDays.length; i++) {
+  weekDays[i].map((info, index) => {
+    const div = document.createElement("div");
+    div.className = `div${index}`;
+    const img = document.createElement("img");
+    img.src = info.cover;
+    img.className = "img1";
+    div.appendChild(img);
+    const title = document.createElement("h2");
+    title.textContent = info.title;
+    title.className = "title";
+    div.appendChild(title);
+    const time = document.createElement("select");
+    time.className = "time";
+    div.appendChild(time);
+    for (let j = info.start; j < info.end; j += 2) {
+      let a = document.createElement("option");
+      a.value = `${j}:00-${j + 2}:00`;
+      a.textContent = `${j}:00-${j + 2}:00`;
+      a.className = `timeselect${j}${i}${index}`;
+      time.appendChild(a);
+    }
+    const btn = document.createElement("button");
+    btn.textContent = "book";
+    btn.className = "btn";
+    div.appendChild(btn);
+    maindivs[i].appendChild(div);
+    itemsCont.appendChild(maindivs[i]);
+  });
+}
 
-  for (let i = data[0][day][0].start; i < data[0][day][0].end; i += 2) {
-    if (i === 10) {
-      for (let k = 0; k < 3; k++) {
-        time1[k].textContent = `${i}:00-${i + 2}:00`;
-        time1[k].value = `${i}:00-${i + 2}:00`;
-      }
-    }
-    if (i === 12) {
-      for (let k = 0; k < 3; k++) {
-        if (day === "saturday" || day === "sunday") {
-          time1[k].textContent = `${i}:00-${i + 2}:00`;
-          time1[k].value = `${i}:00-${i + 2}:00`;
-        } else {
-          time2[k].textContent = `${i}:00-${i + 2}:00`;
-          time2[k].value = `${i}:00-${i + 2}:00`;
-        }
-      }
-    }
-    if (i === 14) {
-      for (let k = 0; k < 3; k++) {
-        if (day === "saturday" || day === "sunday") {
-          time2[k].textContent = `${i}:00-${i + 2}:00`;
-          time2[k].value = `${i}:00-${i + 2}:00`;
-        } else {
-          time3[k].textContent = `${i}:00-${i + 2}:00`;
-          time3[k].value = `${i}:00-${i + 2}:00`;
-        }
-      }
-    }
-    if (i === 16) {
-      for (let k = 0; k < 3; k++) {
-        if (day === "saturday" || day === "sunday") {
-          time3[k].textContent = `${i}:00-${i + 2}:00`;
-          time3[k].value = `${i}:00-${i + 2}:00`;
-        } else {
-          time4[k].textContent = `${i}:00-${i + 2}:00`;
-          time4[k].value = `${i}:00-${i + 2}:00`;
-        }
-      }
-    }
-    if (i === 18) {
-      for (let k = 0; k < 3; k++) {
-        if (day === "saturday" || day === "sunday") {
-          time4[k].textContent = `${i}:00-${i + 2}:00`;
-          time4[k].value = `${i}:00-${i + 2}:00`;
-        } else {
-          time5[k].textContent = `${i}:00-${i + 2}:00`;
-          time5[k].value = `${i}:00-${i + 2}:00`;
-        }
-      }
-    }
-    if (i === 20) {
-      for (let k = 0; k < 3; k++) {
-        time5[k].textContent = `${i}:00-${i + 2}:00`;
-        time5[k].value = `${i}:00-${i + 2}:00`;
-      }
-    }
+const timee = document.querySelectorAll(".time");
+const btnn = document.querySelectorAll(".btn");
+const img1 = document.querySelectorAll(".img1");
+const titlee = document.querySelectorAll(".title");
+const timeselect = document.querySelectorAll(".timeselect");
+for (let i = 0; i < btnn.length; i++) {
+  btnn[i].addEventListener("click", () => {
+    console.log(timee[i].value, img1[i].src, titlee[i].textContent);
+    localStorage.setItem(
+      `booking${i}-${timee[i].value}`,
+      [
+        timee[i].value,
+        selectedDate.value,
+        img1[i].src,
+        titlee[i].textContent,
+      ].join(" ")
+    );
+  });
+}
+const allOptions = document.querySelectorAll("option");
+for (let i = 7; i < allOptions.length; i++) {
+  allOptions[i].style.color = "green";
+}
+const booked = document.querySelector(".booked-playes");
+let values = [];
+function allStorage() {
+  let keys = Object.keys(localStorage),
+    i = keys.length;
+
+  while (i--) {
+    values.push(localStorage.getItem(keys[i]));
   }
-};
-let booked = [];
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
 
-selectedDate.addEventListener("change", () => {
-  displayItems(selectedDate.value);
-});
-const tim = document.getElementById("selecttime1");
-const tim2 = document.getElementById("selecttime2");
-const tim3 = document.getElementById("selecttime3");
-
-console.log(time1[0]);
-let timesArray1 = [time1[0], time2[0], time3[0], time4[0], time5[0]];
-const checkItems = () => {
-  console.log(booked);
-  booked.map((a) => {
-    if (
-      a.weekDay === selectedDate.value &&
-      a.time === tim.value &&
-      a.title === title1.textContent &&
-      a.cover === img1.src
-    ) {
-      booked.pop();
-      alert("არჩეული სპეკტაკლი უკვე დაჯავშნილია");
-    } else if (
-      a.weekDay === selectedDate.value &&
-      a.time === tim2.value &&
-      a.title === title2.textContent &&
-      a.cover === img2.src
-    ) {
-      booked.pop();
-      alert("არჩეული სპეკტაკლი უკვე დაჯავშნილია");
-    } else if (
-      a.weekDay === selectedDate.value &&
-      a.time === tim3.value &&
-      a.title === title3.textContent &&
-      a.cover === img3.src
-    ) {
-      booked.pop();
-      alert("არჩეული სპეკტაკლი უკვე დაჯავშნილია");
+  let unique = values.filter(onlyUnique);
+  console.log(unique);
+  //ffgd
+  unique.map((data, index) => {
+    const splitted = data.split(" ");
+    const div = document.createElement("div");
+    div.className = `bookeddiv`;
+    const img = document.createElement("img");
+    const weekDay = document.createElement("h2");
+    weekDay.className = "bookedweekday";
+    weekDay.textContent = splitted[1];
+    img.className = "img1";
+    img.src = splitted[2];
+    const title = document.createElement("h2");
+    title.className = "bookedtitle";
+    for (let i = 3; i < splitted.length; i++) {
+      title.textContent += ` ${splitted[i]}`;
+    }
+    const time = document.createElement("h2");
+    time.className = "bookedtime";
+    time.textContent = splitted[0];
+    div.style.display = "flex";
+    div.appendChild(img);
+    div.appendChild(title);
+    div.appendChild(weekDay);
+    div.appendChild(time);
+    booked.appendChild(div);
+    //vawitleb
+    for (let j = 0; j < btnn.length; j++) {
+      if (
+        " " + titlee[j].textContent === title.textContent &&
+        img.src === img1[j].src &&
+        selectedDate.value === weekDay.textContent
+      ) {
+        for (let i = 7; i < allOptions.length; i++) {
+          if (selectedDate.value === "monday" && i >= 7 && i < 22) {
+            if (j === 0 && i >= 7 && i < 12) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 1 && i >= 12 && i < 17) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 2 && i >= 17 && i < 22) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+          }
+          if (selectedDate.value === "tuesday" && i >= 22 && i < 37) {
+            if (j === 3 && i >= 22 && i < 27) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 4 && i >= 27 && i < 32) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 5 && i >= 32 && i < 37) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+          }
+          if (selectedDate.value === "wednesday" && i >= 37 && i < 52) {
+            if (j === 6 && i >= 37 && i < 42) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 7 && i >= 42 && i < 47) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 8 && i >= 47 && i < 52) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+          }
+          if (selectedDate.value === "thursday" && i >= 52 && i < 67) {
+            if (j === 9 && i >= 52 && i < 57) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 10 && i >= 57 && i < 62) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 11 && i >= 62 && i < 67) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+          }
+          if (selectedDate.value === "friday" && i >= 67 && i < 82) {
+            if (j === 12 && i >= 67 && i < 72) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 13 && i >= 72 && i < 77) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 14 && i >= 77 && i < 82) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+          }
+          if (selectedDate.value === "saturday" && i >= 82 && i < 97) {
+            if (j === 15 && i >= 82 && i < 87) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 16 && i >= 87 && i < 92) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 17 && i >= 92 && i < 97) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+          }
+          if (selectedDate.value === "sunday" && i >= 97 && i < 112) {
+            if (j === 18 && i >= 97 && i < 102) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 19 && i >= 102 && i < 107) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+            if (j === 20 && i >= 107 && i < 112) {
+              if (allOptions[i].value === time.textContent) {
+                allOptions[i].style.color = "red";
+              }
+            }
+          }
+        }
+      }
     }
   });
-  console.log(tim.value);
-};
+}
+allStorage();
+for (let i = 0; i < btnn.length; i++) {
+  btnn[i].addEventListener("click", () => {
+    const bkeddiv = document.querySelectorAll(".bookeddiv");
+    for (let i = 0; i < bkeddiv.length; i++) {
+      bkeddiv[i].style.display = "none";
+    }
+    allStorage();
+  });
+}
+//გამომაქვს სპეკტაკლები დღეების მიხედვით
+selectedDate.addEventListener("change", () => {
+  for (let i = 1; i <= 7; i++) {
+    if (
+      !document
+        .querySelector(`.main${i}`)
+        .classList.contains(selectedDate.value)
+    ) {
+      document.querySelector(`.main${i}`).style.display = "none";
+    } else {
+      document.querySelector(`.main${i}`).style.display = "grid";
+    }
+  }
+  for (let i = 100; i <= 202; i++) {
+    if (document.querySelector(`.timeselect${i}`)) {
+      console.log(`.timeselect${i}`);
+    }
+  }
+  ops.map((a) => {
+    if (a.value === selectedDate.value) {
+      a.selected = "selected";
+    }
+  });
 
-btn1.addEventListener("click", () => {
-  checkItems();
-  console.log(timeSelector1.value, img1.src, title1.textContent);
-  for (let i = 0; i < timesArray1.length; i++) {
-    if (timeSelector1.value === timesArray1[i].value) {
-      timesArray1[i].style.color = "red";
-      booked.push({
-        weekDay: selectedDate.value,
-        time: timeSelector1.value,
-        title: title1.textContent,
-        cover: img1.src,
-      });
-      console.log(booked);
-    }
+  const bkeddiv = document.querySelectorAll(".bookeddiv");
+  for (let i = 0; i < bkeddiv.length; i++) {
+    bkeddiv[i].style.display = "none";
   }
+  allStorage();
 });
-let timesArray2 = [time1[1], time2[1], time3[1], time4[1], time5[1]];
-btn2.addEventListener("click", () => {
-  checkItems();
-  console.log(timeSelector2.value, img2.src, title2.textContent);
-  for (let i = 0; i < timesArray2.length; i++) {
-    if (timeSelector2.value === timesArray2[i].value) {
-      timesArray2[i].style.color = "red";
-      booked.push({
-        weekDay: selectedDate.value,
-        time: timeSelector2.value,
-        title: title2.textContent,
-        cover: img2.src,
-      });
-      console.log(booked);
-    }
-  }
-});
-let timesArray3 = [time1[2], time2[2], time3[2], time4[2], time5[2]];
-
-btn3.addEventListener("click", () => {
-  checkItems();
-  console.log(timeSelector3.value, img3.src, title3.textContent);
-  for (let i = 0; i < timesArray3.length; i++) {
-    if (timeSelector3.value === timesArray3[i].value) {
-      timesArray3[i].style.color = "red";
-      booked.push({
-        weekDay: selectedDate.value,
-        time: timeSelector3.value,
-        title: title3.textContent,
-        cover: img3.src,
-      });
-      console.log(booked);
-    }
-  }
+const deleteBooks = document.querySelector(".deletebooks");
+deleteBooks.addEventListener("click", function () {
+  localStorage.clear();
+  document.location.reload();
 });

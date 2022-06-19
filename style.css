@@ -2,60 +2,238 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 body {
+  background-color: #030e4f;
 }
+
 header {
   padding: 10px;
   display: flex;
   justify-content: center;
-  background-color: #4c4c4c;
+  margin-bottom: 30px;
+  background-color: #f8c577;
 }
 
 .mainheader {
   padding: 10px;
-  color: #fff;
+  color: #adefd1ff;
 }
 .mainheader:hover {
   cursor: pointer;
 }
+.span3 {
+  background-color: blue;
+  padding: 5px;
+  border-radius: 5px;
+}
 .span1 {
   background-color: red;
+  padding: 5px;
   border-radius: 5px;
 }
 .span2 {
-  background-color: blue;
+  background-color: green;
+  padding: 5px;
   border-radius: 5px;
 }
 main {
   padding: 10px;
   width: 100%;
-  height: 100vh;
-  background-color: #5e5e5e;
+  height: 100%;
 }
 .selection {
   display: flex;
-  gap: 8%;
+  justify-content: space-between;
+  padding: 20px;
+
+  margin-bottom: 40px;
+  background-color: #adefd1ff;
 }
-.selection h2 {
-  color: #fff;
+.divselect {
+  width: 50%;
+  display: flex;
+  gap: 15%;
+}
+.deletebooks {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.selection div h2 {
+  color: #f49f1c;
 }
 
 #allitems {
   margin: 20px 0;
-  display: flex;
-  justify-content: space-between;
 }
-.img1,
-.img2,
-.img3 {
+.img1 {
   width: 600px;
   height: 200px;
 }
-.time1,
-.time2,
-.time3,
-.time4,
-.time5 {
-  color: rgb(0, 168, 0);
+
+.timeselect {
+  color: green;
+}
+
+.main2,
+.main3,
+.main4,
+.main5,
+.main6,
+.main7 {
+  display: none;
+  grid-template-rows: repeat(auto);
+
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.main1 {
+  display: grid;
+  grid-template-rows: repeat(auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.booked-playes {
+  display: grid;
+  grid-template-rows: repeat(auto);
+
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: stretch;
+  gap: 10px;
+  width: 100%;
+  background-color: #030e4f;
+  height: 100%;
+}
+.bookeddiv {
+  padding: 10px 2px;
+  border: 2px solid #f49f1c;
+}
+
+.title,
+.bookeddiv,
+.yourplays {
+  color: #f49f1c;
+}
+.btn {
+  padding: 10px;
+  font-size: 16px;
+}
+.btn:hover {
+  letter-spacing: 10px;
+  font-weight: bold;
+}
+
+.div0,
+.div1,
+.div2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border: 1px dotted #f49f1c;
+}
+.time {
+  padding: 10px;
+}
+.bookedweekday::before {
+  color: #fff;
+  content: "კვირის დღე: ";
+}
+.bookedtitle::before {
+  color: #fff;
+  content: "სახელწოდება: ";
+}
+.bookedtime::before {
+  color: #fff;
+  content: "სესიის დრო: ";
+}
+
+.yourplays {
+  background-color: #adefd1ff;
+  text-align: center;
+  padding: 40px;
+  margin: 30px 0;
+}
+.bookeddiv {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+@media (max-width: 1918px) {
+  .booked-playes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main2,
+  .main3,
+  .main4,
+  .main5,
+  .main6,
+  .main7,
+  .main1 {
+    grid-template-columns: repeat(2, 1fr);
+    justify-self: center;
+  }
+  .img1,
+  .title {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1288px) {
+  .booked-playes {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .main2,
+  .main3,
+  .main4,
+  .main5,
+  .main6,
+  .main7,
+  .main1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .time,
+  .btn {
+    width: 600px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 950px) {
+  .selection {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .divselect {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .divselect select {
+    height: 45px;
+  }
+  .deletebooks {
+    width: 50%;
+  }
+}
+@media (max-width: 650px) {
+  .div0,
+  .div1,
+  .div2 {
+    align-items: center;
+  }
+  .img1 {
+    width: 90%;
+  }
+  .time,
+  .btn {
+    width: 100%;
+  }
 }
